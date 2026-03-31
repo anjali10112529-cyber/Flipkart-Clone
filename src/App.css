@@ -393,7 +393,7 @@
 
 /* Optional: Smooth scroll behavior */
 html {
-  scroll-behavior: smooth;
+  
 }
 
 /* Optional: Add transition for category bar */
@@ -417,24 +417,13 @@ html {
   padding: 12px 20px;
   display: flex;
   align-items: center;
-  gap: 32px;
+  gap: 40px;
   overflow-x: auto;
   white-space: nowrap;
-  scrollbar-width: thin;
+  
 }
 
-.category-container::-webkit-scrollbar {
-  height: 4px;
-}
 
-.category-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.category-container::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
-}
 
 .category-item {
   flex-shrink: 0;
@@ -444,7 +433,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 0px;
   color: #212121;
   text-decoration: none;
   font-size: 14px;
@@ -1059,4 +1048,79 @@ html {
 /* Add image error handling with JavaScript */
 img {
   onerror: "this.onerror=null; this.src='https://via.placeholder.com/200x200?text=Image+Not+Found';"
+}
+
+.flipkart-footer {
+  background-color: #172337;
+  color: #ffffff;
+  padding: 40px 20px 20px;
+  font-size: 13px;
+}
+
+.footer-top {
+  border-bottom: 1px solid #3e5066;
+  padding-bottom: 30px;
+}
+
+.flipkart-footer h6 {
+  color: #878787;
+  font-size: 12px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+.flipkart-footer ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.flipkart-footer ul li {
+  margin-bottom: 8px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.flipkart-footer ul li:hover {
+  color: #ffffff;
+  text-decoration: underline;
+}
+
+.flipkart-footer p {
+  font-size: 12px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+/* Bottom Section */
+.footer-bottom {
+  padding-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.bottom-left {
+  text-align: left;
+}
+
+.bottom-right {
+  text-align: right;
+}
+
+.bottom-right span {
+  margin-left: 15px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .footer-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .bottom-left,
+  .bottom-right {
+    text-align: center;
+  }
 }

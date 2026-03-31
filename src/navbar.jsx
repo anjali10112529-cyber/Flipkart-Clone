@@ -30,10 +30,10 @@ const Navbar = () => {
   const categories = [
     { name: "For You", icon: "🔥", page: "foryou" },
     { name: "Fashion", icon: "👕", page: "fashion" },
-    { name: "Mobiles", icon: "📱", page: "mobiles" },
+    { name: "Mobiles", icon: "📱", page: "mobile" },
     { name: "Beauty", icon: "💄", page: "beauty" },
     { name: "Electronics", icon: "💻", page: "electronics" },
-    { name: "Home", icon: "🏠", page: "home" },
+    { name: "Home", icon: "🏠", page: "home1" },
     { name: "Appliances", icon: "🔌", page: "appliances" },
     { name: "Toys, ba...", icon: "🧸", page: "toys" },
     { name: "Food & H...", icon: "🍔", page: "grocery" },
@@ -47,6 +47,20 @@ const Navbar = () => {
     window.open('/product-page.html?show=foryou', '_blank');
   } else if (pageName === 'fashion') {
     window.open('/product-page.html?show=fashion', '_blank');
+   } else if (pageName === 'mobile') {
+    window.open('/product-page.html?show=mobile', '_blank');
+  } else if (pageName === 'beauty') {
+    window.open('/product-page.html?show=beauty', '_blank');
+   } else if (pageName === 'electronics') {
+    window.open('/product-page.html?show=electronics', '_blank');
+   } else if (pageName === 'home1') {
+    window.open('/product-page.html?show=home1', '_blank');
+    } else if (pageName === 'appliances') {
+    window.open('/product-page.html?show=appliances', '_blank');
+    } else if (pageName === 'toys') {
+    window.open('/product-page.html?show=toys', '_blank');
+    } else if (pageName === 'books') {
+    window.open('/product-page.html?show=books', '_blank');
   } else {
     alert(`${pageName} page coming soon!`);
   }
