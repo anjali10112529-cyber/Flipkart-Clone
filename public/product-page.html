@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flipkart - Product Page</title>
+</head>
+<body>
+    <div id="root"></div>
+    <script>
+        // Get the full URL and redirect to main app with parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const show = urlParams.get('show');
+        window.location.href = `/?show=${show || 'foryou'}`;
+    </script>
+</body>
+</html>

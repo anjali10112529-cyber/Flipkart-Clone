@@ -4,10 +4,11 @@ import { FiMenu } from 'react-icons/fi';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
+import { useCart } from './context/cartContext';
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
+  const { cartItems, removeFromCart, updateQuantity, getCartCount, getCartTotal } = useCart();
   const [showRegisterModal, setShowRegisterModal] = useState(false);
   const [loginData, setLoginData] = useState({
     email: '',
@@ -27,21 +28,29 @@ const Navbar = () => {
 
   // Category data with icons
   const categories = [
-    { name: "For You", icon: "🔥" },
-    { name: "Fashion", icon: "👕" },
-    { name: "Mobiles", icon: "📱" },
-    { name: "Beauty", icon: "💄" },
-    { name: "Electronics", icon: "💻" },
-    { name: "Home", icon: "🏠" },
-    { name: "Appliances", icon: "🔌" },
-    { name: "Toys, ba...", icon: "🧸" },
-    { name: "Food & H...", icon: "🍔" },
-    { name: "Auto Acc...", icon: "🚗" },
-    { name: "2 Wheele...", icon: "🏍️" },
-    { name: "Sports &...", icon: "⚽" },
-    { name: "Books & ...", icon: "📚" },
-    { name: "Furniture", icon: "🪑" }
+    { name: "For You", icon: "🔥", page: "foryou" },
+    { name: "Fashion", icon: "👕", page: "fashion" },
+    { name: "Mobiles", icon: "📱", page: "mobiles" },
+    { name: "Beauty", icon: "💄", page: "beauty" },
+    { name: "Electronics", icon: "💻", page: "electronics" },
+    { name: "Home", icon: "🏠", page: "home" },
+    { name: "Appliances", icon: "🔌", page: "appliances" },
+    { name: "Toys, ba...", icon: "🧸", page: "toys" },
+    { name: "Food & H...", icon: "🍔", page: "grocery" },
+    { name: "Books & ...", icon: "📚", page: "books" },
+    { name: "Furniture", icon: "🪑", page: "furniture" }
   ];
+
+  // Handle category click - opens in new tab
+  const handleCategoryClick = (pageName) => {
+  if (pageName === 'foryou') {
+    window.open('/product-page.html?show=foryou', '_blank');
+  } else if (pageName === 'fashion') {
+    window.open('/product-page.html?show=fashion', '_blank');
+  } else {
+    alert(`${pageName} page coming soon!`);
+  }
+};
 
   // Handle Login Input Changes
   const handleLoginChange = (e) => {
@@ -49,7 +58,6 @@ const Navbar = () => {
       ...loginData,
       [e.target.name]: e.target.value
     });
-    // Clear error for this field when user starts typing
     if (errors[e.target.name]) {
       setErrors({
         ...errors,
@@ -64,7 +72,6 @@ const Navbar = () => {
       ...registerData,
       [e.target.name]: e.target.value
     });
-    // Clear error for this field when user starts typing
     if (errors[e.target.name]) {
       setErrors({
         ...errors,
@@ -121,8 +128,6 @@ const Navbar = () => {
     e.preventDefault();
     const validationErrors = validateLogin();
     if (Object.keys(validationErrors).length === 0) {
-      // Here you would typically make an API call to authenticate
-      console.log('Login data:', loginData);
       alert('Login successful!');
       setShowLoginModal(false);
       setLoginData({ email: '', password: '' });
@@ -137,8 +142,6 @@ const Navbar = () => {
     e.preventDefault();
     const validationErrors = validateRegister();
     if (Object.keys(validationErrors).length === 0) {
-      // Here you would typically make an API call to register
-      console.log('Register data:', registerData);
       alert('Registration successful! Please login.');
       setShowRegisterModal(false);
       setRegisterData({
@@ -263,8 +266,12 @@ const Navbar = () => {
       <div className="category-bar">
         <div className="category-container">
           {categories.map((category, index) => (
-            <div key={index} className="category-item">
-              <a href="#">
+            <div 
+              key={index} 
+              className="category-item"
+              onClick={() => handleCategoryClick(category.page)}
+            >
+              <a href="#" onClick={(e) => e.preventDefault()}>
                 <span className="category-icon">{category.icon}</span>
                 <span className="category-name">{category.name}</span>
               </a>
